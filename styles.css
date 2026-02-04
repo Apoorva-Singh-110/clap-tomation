@@ -1,0 +1,1146 @@
+/* ========================================
+   CELESTIA - Horoscope App Homepage
+   Design System & Styles
+   ======================================== */
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  /* Backgrounds */
+  --bg-primary: #0B1426;
+  --bg-secondary: #0F2044;
+  --bg-tertiary: #1A3A6E;
+
+  /* Text */
+  --text-heading: #E8DCC4;
+  --text-body: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-subtle: rgba(255, 255, 255, 0.4);
+
+  /* Accents */
+  --accent-blue: #4A9FFF;
+  --accent-purple: #7B68EE;
+  --accent-gold: #D4AF37;
+  --accent-cyan: #00D4FF;
+
+  /* Semantic */
+  --success: #4ADE80;
+  --warning: #FBBF24;
+  --danger: #EF4444;
+
+  /* Card Surfaces */
+  --card-bg: rgba(30, 58, 138, 0.25);
+  --card-border: rgba(74, 159, 255, 0.15);
+  --card-glow: rgba(74, 159, 255, 0.3);
+
+  /* Input */
+  --input-bg: rgba(15, 32, 68, 0.8);
+  --input-border: rgba(74, 159, 255, 0.3);
+  --input-focus-border: #4A9FFF;
+  --input-focus-glow: rgba(74, 159, 255, 0.5);
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ===== COSMIC BACKGROUND ===== */
+.cosmic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: linear-gradient(180deg, #0B1426 0%, #0F2044 50%, #1A3A6E 100%);
+}
+
+#starField {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nebula-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(74, 159, 255, 0.08) 0%, rgba(123, 104, 238, 0.05) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===== APP CONTAINER ===== */
+.app-container {
+  position: relative;
+  z-index: 1;
+  max-width: 428px;
+  margin: 0 auto;
+  padding: 0 20px;
+  padding-top: env(safe-area-inset-top, 44px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 40px);
+}
+
+/* ===== GLASSMORPHISM CARD ===== */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   SECTION 1: ZODIAC HEADER
+   ======================================== */
+.zodiac-header {
+  text-align: center;
+  padding: 20px 0 32px;
+  position: relative;
+}
+
+.change-sign-btn {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.change-sign-btn:hover,
+.change-sign-btn:active {
+  color: var(--text-body);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.zodiac-illustration-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 16px auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zodiac-icon {
+  width: 90px;
+  height: 90px;
+  animation: float 5s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.zodiac-icon:active {
+  transform: scale(1.05);
+}
+
+.zodiac-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 12px rgba(74, 159, 255, 0.3));
+}
+
+.orbital-ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 50%;
+  animation: orbit 18s linear infinite;
+}
+
+.orbital-ring::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.orbital-ring-2 {
+  width: 130px;
+  height: 130px;
+  border-color: rgba(123, 104, 238, 0.15);
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+.orbital-ring-2::before {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-purple);
+  box-shadow: 0 0 8px var(--accent-purple);
+}
+
+.sign-name {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(232, 220, 196, 0.3);
+  animation: textGlow 3s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+.date-range {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.current-date {
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+/* ========================================
+   SECTION 2: LUCKY STRIP
+   ======================================== */
+.lucky-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  background: rgba(20, 45, 100, 0.3);
+}
+
+.lucky-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.lucky-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.lucky-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.lucky-numbers {
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  position: relative;
+}
+
+.lucky-numbers::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.lucky-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.lucky-colors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.color-swatch-group {
+  display: flex;
+  gap: 8px;
+}
+
+.color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.color-names {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.peak-time {
+  color: var(--success) !important;
+  font-size: 20px !important;
+}
+
+.peak-descriptor {
+  font-size: 10px;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   SECTION 3: TODAY'S FOCUS
+   ======================================== */
+.todays-focus {
+  padding: 20px;
+  margin-bottom: 24px;
+  border-left: 3px solid var(--accent-gold);
+  animation: cardEnter 0.5s ease-out;
+}
+
+.focus-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.focus-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.focus-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.focus-message {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-body);
+  margin-bottom: 16px;
+}
+
+/* ===== DO / DON'T CARDS ===== */
+.do-dont-row {
+  display: flex;
+  gap: 12px;
+}
+
+.do-dont-row.compact {
+  margin-top: 14px;
+}
+
+.do-card,
+.dont-card {
+  flex: 1;
+  border-radius: 11px;
+  padding: 12px;
+  transition: transform 0.2s ease;
+}
+
+.do-card:active,
+.dont-card:active {
+  transform: scale(0.98);
+}
+
+.do-card {
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.dont-card {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.do-dont-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.do-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--success);
+}
+
+.dont-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--danger);
+}
+
+.do-dont-text {
+  font-size: 13px;
+  color: var(--text-body);
+  font-weight: 400;
+}
+
+/* ========================================
+   SECTION 4: CARD CAROUSEL
+   ======================================== */
+.carousel-section {
+  margin-bottom: 24px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 20px 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.horoscope-card {
+  min-width: 300px;
+  max-width: 300px;
+  scroll-snap-align: start;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.horoscope-card:hover {
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 20px var(--card-glow);
+}
+
+/* Luck card special styling */
+.luck-card {
+  border-color: rgba(212, 175, 55, 0.25);
+  background: rgba(30, 50, 80, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.luck-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-emoji {
+  font-size: 18px;
+}
+
+.card-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-category {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.card-subtitle {
+  font-size: 11px;
+  color: var(--text-subtle);
+}
+
+.card-headline {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-body);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card-cta {
+  font-size: 12px;
+  color: var(--text-subtle);
+}
+
+.card-feedback {
+  display: flex;
+  gap: 6px;
+}
+
+.feedback-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: transform 0.15s ease, background 0.15s ease;
+  opacity: 0.6;
+}
+
+.feedback-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.feedback-btn:active {
+  transform: scale(0.95);
+}
+
+.feedback-btn.selected {
+  opacity: 1;
+  transform: scale(1.2);
+  background: rgba(74, 159, 255, 0.15);
+}
+
+/* Carousel dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(74, 159, 255, 0.4);
+}
+
+/* ========================================
+   SECTION 5: COMPATIBILITY
+   ======================================== */
+.compatibility-section {
+  padding: 22px 20px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.section-icon {
+  font-size: 20px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.sign-selector-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.sign-selector {
+  width: 100%;
+  height: 54px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  padding: 0 44px 0 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-body);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sign-selector:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(74, 159, 255, 0.15), 0 0 20px rgba(74, 159, 255, 0.2);
+}
+
+.sign-selector option {
+  background: #0F2044;
+  color: white;
+  padding: 8px;
+}
+
+.selector-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.selector-arrow.small {
+  right: 10px;
+}
+
+/* Compatibility Result */
+.compatibility-result {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.4s ease;
+}
+
+.compatibility-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.compat-card {
+  background: rgba(20, 40, 90, 0.4);
+  border: 1px solid rgba(74, 159, 255, 0.12);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.compat-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.compat-sign-icon {
+  font-size: 28px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.compat-heart {
+  font-size: 22px;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+.compat-percentage {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.compat-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.compat-summary {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* ========================================
+   SECTION 6: NUMEROLOGY CTA
+   ======================================== */
+.numerology-section {
+  padding: 24px 20px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(25, 50, 100, 0.3);
+  border: 1px solid rgba(123, 104, 238, 0.15);
+}
+
+.numerology-title {
+  color: var(--text-heading) !important;
+}
+
+.numerology-form-container {
+  background: linear-gradient(135deg, rgba(15, 32, 68, 0.5), rgba(30, 50, 100, 0.3));
+  border: 1px solid rgba(123, 104, 238, 0.12);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.label-icon {
+  font-size: 14px;
+}
+
+.optional-tag {
+  font-size: 11px;
+  color: var(--text-subtle);
+  font-weight: 400;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.numerology-input {
+  width: 100%;
+  height: 52px;
+  background: rgba(15, 32, 68, 0.9);
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  padding: 0 40px 0 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-body);
+  transition: all 0.2s ease;
+}
+
+.numerology-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.numerology-input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  background: rgba(15, 32, 68, 1);
+  box-shadow:
+    0 0 0 3px rgba(74, 159, 255, 0.15),
+    0 0 20px rgba(74, 159, 255, 0.2),
+    inset 0 0 15px rgba(74, 159, 255, 0.03);
+}
+
+.numerology-input.valid {
+  border-color: rgba(74, 222, 128, 0.5);
+}
+
+.input-check {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.input-check.visible {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Date of Birth inputs */
+.dob-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.dob-input {
+  text-align: center;
+  padding: 0 8px !important;
+  border-radius: 12px 0 0 12px !important;
+}
+
+.dob-input + .dob-sep + .dob-input {
+  border-radius: 0 !important;
+}
+
+.dob-input.dob-year {
+  border-radius: 0 12px 12px 0 !important;
+  flex: 1.5;
+}
+
+.dob-sep {
+  color: var(--text-subtle);
+  font-size: 16px;
+  padding: 0 2px;
+  flex-shrink: 0;
+  background: rgba(15, 32, 68, 0.9);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-top: 1.5px solid var(--input-border);
+  border-bottom: 1.5px solid var(--input-border);
+}
+
+/* Time inputs */
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.time-input {
+  text-align: center;
+  padding: 0 8px !important;
+  flex: 1;
+}
+
+.time-input:first-child {
+  border-radius: 12px 0 0 12px !important;
+}
+
+.time-sep {
+  color: var(--text-subtle);
+  font-size: 16px;
+  padding: 0 2px;
+  flex-shrink: 0;
+  background: rgba(15, 32, 68, 0.9);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-top: 1.5px solid var(--input-border);
+  border-bottom: 1.5px solid var(--input-border);
+}
+
+.ampm-selector-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ampm-selector {
+  height: 52px;
+  width: 72px;
+  background: rgba(15, 32, 68, 0.9);
+  border: 1.5px solid var(--input-border);
+  border-radius: 0 12px 12px 0;
+  padding: 0 24px 0 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ampm-selector:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+}
+
+.ampm-selector option {
+  background: #0F2044;
+}
+
+/* CTA Button */
+.cta-button {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4A9FFF, #7B68EE);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(74, 159, 255, 0.35);
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.cta-button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 28px rgba(74, 159, 255, 0.45);
+}
+
+.cta-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 12px rgba(74, 159, 255, 0.3);
+}
+
+.cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: buttonShimmer 4s ease-in-out infinite;
+}
+
+/* Privacy Note */
+.privacy-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-subtle);
+  margin-top: 14px;
+}
+
+/* Sparkle decorations */
+.numerology-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkleAnim 3s ease-in-out infinite;
+}
+
+.s1 { top: 10%; left: 15%; animation-delay: 0s; }
+.s2 { top: 20%; right: 20%; animation-delay: 0.8s; }
+.s3 { bottom: 30%; left: 10%; animation-delay: 1.6s; }
+.s4 { top: 40%; right: 10%; animation-delay: 2.4s; }
+.s5 { bottom: 15%; right: 30%; animation-delay: 0.4s; }
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(232, 220, 196, 0.25); }
+  50% { text-shadow: 0 0 35px rgba(232, 220, 196, 0.45); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { left: -40%; }
+  50%, 100% { left: 120%; }
+}
+
+@keyframes buttonShimmer {
+  0% { left: -100%; }
+  25%, 100% { left: 200%; }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes sparkleAnim {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   RESPONSIVE / MOBILE POLISH
+   ======================================== */
+@media (max-width: 374px) {
+  .lucky-value {
+    font-size: 18px;
+  }
+  .lucky-label {
+    font-size: 9px;
+  }
+  .horoscope-card {
+    min-width: 270px;
+    max-width: 270px;
+  }
+  .sign-name {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 429px) {
+  .app-container {
+    padding-top: 44px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tap highlight removal */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Selection */
+::selection {
+  background: rgba(74, 159, 255, 0.3);
+  color: white;
+}
