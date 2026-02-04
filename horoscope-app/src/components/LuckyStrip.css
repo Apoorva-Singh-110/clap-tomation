@@ -1,0 +1,100 @@
+.lucky-strip {
+  margin: 24px 20px 0;
+  padding: 18px 12px;
+  background: rgba(15, 35, 75, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: stretch;
+}
+
+.lucky-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+}
+
+.lucky-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: stretch;
+}
+
+.lucky-label {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.lucky-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.lucky-number-group {
+  display: flex;
+  align-items: center;
+}
+
+.lucky-number {
+  font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #E8E4DC;
+  text-shadow: 0 0 15px rgba(244, 208, 63, 0.2);
+}
+
+.number-dot {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0 6px;
+}
+
+.lucky-colors {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.color-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.color-name {
+  font-family: "Inter", "DM Sans", sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.peak-time {
+  font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #34D399;
+}
+
+.peak-descriptor {
+  font-family: "Inter", "DM Sans", sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}

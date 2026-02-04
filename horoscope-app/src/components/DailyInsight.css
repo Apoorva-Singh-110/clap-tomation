@@ -1,0 +1,70 @@
+.daily-insight {
+  margin: 0 20px;
+  padding: 20px;
+  background: rgba(15, 35, 75, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(74, 159, 255, 0.06);
+  animation: ambientGlow 4s ease-in-out infinite;
+}
+
+@keyframes ambientGlow {
+  0%, 100% {
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(74, 159, 255, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(74, 159, 255, 0.12);
+  }
+}
+
+.insight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.insight-label-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.insight-icon {
+  color: #4A9FFF;
+}
+
+.insight-label {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+.insight-date {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+.insight-text {
+  font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #FFFFFF;
+  margin: 0;
+  font-style: italic;
+}

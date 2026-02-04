@@ -1,0 +1,90 @@
+/* Reset & Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Background */
+  --bg-primary: #0B1120;
+  --bg-secondary: #0F1729;
+  --bg-card: rgba(15, 35, 75, 0.6);
+  --bg-elevated: rgba(30, 60, 120, 0.4);
+
+  /* Accent */
+  --accent-primary: #4A9FFF;
+  --accent-secondary: #6366F1;
+  --accent-tertiary: #8B5CF6;
+  --accent-warm: #F4D03F;
+
+  /* Text */
+  --text-heading: #E8E4DC;
+  --text-body: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-tertiary: rgba(255, 255, 255, 0.4);
+  --text-accent: #4A9FFF;
+
+  /* Semantic */
+  --color-success: #34D399;
+  --color-warning: #F87171;
+  --color-luck: #FBBF24;
+  --color-info: #60A5FA;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: "Inter", "DM Sans", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-body);
+  background-color: var(--bg-primary);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Remove default styling */
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+img, svg {
+  display: block;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(74, 159, 255, 0.3);
+  color: #FFFFFF;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
